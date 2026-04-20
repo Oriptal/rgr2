@@ -1,5 +1,4 @@
-def main():
-    print("Hello from rgr2!")
+from src.analysis import main
 
 
 if __name__ == "__main__":

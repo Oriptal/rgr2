@@ -1,4 +1,4 @@
-from scipy.stats import t
+from scipy import stats
 def read(ind: int) -> list[float]:
     a = []
     with open("resources/RGR2_A-1_X1-X4.csv", "r") as file:
@@ -36,10 +36,12 @@ mu_x = avg(x)
 mu_y = avg(y)
 
 T = (mu_x - mu_y)/(s*(1/n + 1/m))**0.5
+p_value = 2 * (1 - stats.t.cdf(abs(T), k))
+t_crit = stats.t.ppf(1 - a/2, k)
 
-t_crit = t.ppf(1 - a/2, k)
-
+print(f"Критерий Стьюдента")
 print(f"T = {T}")
+print(f"p_value = {p_value}")
 print(f"t = {t_crit}")
 print(f"O = ({-t_crit}, {t_crit})")
 print(f"W = (-∞, {-t_crit}) ∪ ({t_crit}, ∞)")
